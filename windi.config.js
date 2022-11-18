@@ -12,7 +12,13 @@ delete colors['zink']
 export default defineConfig({
   plugins: [require('windicss/plugin/aspect-ratio'), require('windicss/plugin/line-clamp'), typography()],
   theme: {
-    colors: colors,
+    colors: {
+      ...colors,
+      primary: {
+        default: '#1746a2',
+        50: '#d6e4ff'
+      },
+    },
     container: {
       center: true,
     },

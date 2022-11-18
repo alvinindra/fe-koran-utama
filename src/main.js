@@ -37,6 +37,23 @@ const router = createRouter({
   },
 })
 
+const myCustomLightTheme = {
+  dark: false,
+  colors: {
+    background: '#FFFFFF',
+    surface: '#FFFFFF',
+    primary: '#1746A2',
+    'primary-darken': '#1746A2',
+    secondary: '#03DAC6',
+    'secondary-darken-1': '#018786',
+    error: '#B00020',
+    info: '#2196F3',
+    success: '#4CAF50',
+    warning: '#FB8C00',
+  }
+}
+
+
 const vuetify = createVuetify({
   components,
   directives,
@@ -47,6 +64,12 @@ const vuetify = createVuetify({
       mdi,
     }
   },
+  theme: {
+    defaultTheme: 'myCustomLightTheme',
+    themes: {
+      myCustomLightTheme
+    }
+  }
 })
 
 app.use(router)
