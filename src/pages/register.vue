@@ -21,7 +21,7 @@ const required = (v) => {
 </script>
 
 <template>
-  <v-sheet class="flex px-4 my-3">
+  <v-sheet class="flex px-4 my-4">
     <div class="flex font-medium text-2xl uppercase text-primary">
       <img class="mx-auto" src="/images/logo-koran-utama.png" alt="">
     </div>
@@ -41,22 +41,24 @@ const required = (v) => {
 
         <br>
 
-        <v-btn :disabled="!form" :loading="loading" block color="primary" size="large" type="submit" variant="elevated">
+        <v-btn :loading="loading" block color="primary" size="large" type="submit" variant="elevated">
           Daftar
         </v-btn>
       </v-form>
     </v-card>
-    <div class="grid grid-flow-col text-center gap-x-2 text-blue-400 text-md">
-      <div class="text-black">Sudah Punya akun?</div>
-      <router-link to='/login'>
-        Login
-      </router-link>
-      <div>
-        |
+    <div class="flex">
+      <div class="flex mx-auto text-center gap-x-2 text-blue-400 text-md">
+        <div class="text-black">Sudah Punya akun?</div>
+        <router-link to='/login'>
+          Login
+        </router-link>
+        <div>
+          |
+        </div>
+        <router-link to="/">
+          Beranda
+        </router-link>
       </div>
-      <router-link to="/">
-        Beranda
-      </router-link>
     </div>
   </v-sheet>
 </template>

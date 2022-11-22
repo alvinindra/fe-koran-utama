@@ -6,7 +6,6 @@
 <script setup>
 const form = ref(false)
 const email = ref('')
-const password = ref('')
 const loading = ref(false)
 
 const onSubmit = () => {
@@ -16,43 +15,33 @@ const onSubmit = () => {
 }
 
 const required = (v) => {
-  return !!v || 'Input tidak boleh kosong'
+  return !!v || 'Email tidak boleh kosong'
 }
 </script>
 
 <template>
   <v-sheet class="flex px-4 my-32">
     <div class="flex font-medium text-2xl uppercase text-primary">
-      <img class="mx-auto" src="/images/logo-koran-utama.png" alt="">
+      <router-link class="flex mx-auto" to="/">
+        <img src="/images/logo-koran-utama.png" alt="">
+      </router-link>
     </div>
     <v-card class="m-auto py-8 elevation-0">
       <v-form v-model="form" @submit.prevent="onSubmit">
-        <v-text-field v-model="email" :readonly="loading" :rules="[required]" class="mb-2" clearable label="Email">
+        <div class="text-black text-center mb-4">
+          Masukan email Anda untuk mengatur ulang kata sandi
+        </div>
+        <v-text-field v-model="email" :readonly="loading" class="mb-2" :rules="[required]" clearable label="Email">
         </v-text-field>
 
-        <v-text-field v-model="password" :readonly="loading" :rules="[required]" clearable label="Kata Sandi"
-          placeholder="Enter your password"></v-text-field>
-        <div class="mb-4">
-          <router-link class="text-black hover:text-blue-700 hover:underline" to='/forget-password'>
-            Lupa Password?
-          </router-link>
-        </div>
-        <br>
-
         <v-btn :loading="loading" block color="primary" size="large" type="submit" variant="elevated">
-          Login
+          Kirim
         </v-btn>
       </v-form>
     </v-card>
     <div class="grid grid-flow-col text-center gap-x-2 text-blue-400 text-md">
-      <router-link to='/register'>
-        Register
-      </router-link>
-      <div>
-        |
-      </div>
-      <router-link to="/">
-        Beranda
+      <router-link to="/login">
+        Login
       </router-link>
     </div>
   </v-sheet>

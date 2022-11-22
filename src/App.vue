@@ -3,6 +3,10 @@
 </template>
 
 <style lang="scss">
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
 #app {
   @apply bg-gray-100;
 }
