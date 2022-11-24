@@ -21,7 +21,7 @@ const required = (v) => {
 </script>
 
 <template>
-  <v-sheet class="flex px-4 my-4">
+  <v-sheet class="px-4 my-4">
     <div class="flex font-medium text-2xl uppercase text-primary">
       <img class="mx-auto" src="/images/logo-koran-utama.png" alt="">
     </div>
