@@ -3,7 +3,7 @@
     <LayoutAppBar />
 
     <v-main>
-      <div class="container-mobile min-h-screen">
+      <div class="container-mobile min-h-[80vh]">
         <RouterView />
       </div>
     </v-main>

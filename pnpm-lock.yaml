@@ -20,7 +20,7 @@ specifiers:
   vite-plugin-windicss: ^1.8.7
   vue: ^3.2.38
   vue-router: ^4.1.5
-  vuetify: ^3.0.0
+  vuetify: ^3.0.4
   windicss: ^3.5.6
 
 dependencies:
@@ -34,7 +34,7 @@ dependencies:
   vite-plugin-pages: 0.25.0_vite@3.2.2
   vue: 3.2.41
   vue-router: 4.1.6_vue@3.2.41
-  vuetify: 3.0.0_vue@3.2.41
+  vuetify: 3.0.4_vue@3.2.41
   windicss: 3.5.6
 
 devDependencies:
@@ -3216,8 +3216,8 @@ packages:
       '@vue/server-renderer': 3.2.41_vue@3.2.41
       '@vue/shared': 3.2.41
 
-  /vuetify/3.0.0_vue@3.2.41:
-    resolution: {integrity: sha512-0olLmKWb+oTaebGTM02+1fWaAgnGDuIt86K3jDv2LnALQ2atSzhDS1SSASJsJCZ2PgFBdDAeJVLcNWWavRYAlQ==}
+  /vuetify/3.0.4_vue@3.2.41:
+    resolution: {integrity: sha512-znJjQbOeVhPqtI7y50wepiq/jMWXhAXEl43FUIgrppWNWDDoL00NiGQiJMEkc5/GTTq1gxkpg4QlCUaHXAMpBg==}
     engines: {node: ^12.20 || >=14.13}
     peerDependencies:
       vite-plugin-vuetify: ^1.0.0-alpha.12

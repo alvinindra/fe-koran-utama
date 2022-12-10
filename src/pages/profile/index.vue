@@ -1,4 +1,4 @@
 <template>
-  <HomePostsList />
+  <ProfileHeader />
 </template>
   
