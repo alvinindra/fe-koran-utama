@@ -4,14 +4,23 @@
 </route>
 
 <script setup>
+import { useAuthStore } from '@/stores/auth'
 const form = ref(false)
-const email = ref('')
+const username = ref('')
 const password = ref('')
 const loading = ref(false)
+const { login } = useAuthStore()
 
 const onSubmit = () => {
   if (!form.value) return
   loading.value = true
+
+  const data = {
+    username: username.value,
+    password: password.value
+  }
+
+  login(data)
   setTimeout(() => (loading.value = false), 2000)
 }
 
@@ -27,10 +36,10 @@ const required = (v) => {
     </div>
     <v-card class="m-auto py-8 elevation-0">
       <v-form v-model="form" @submit.prevent="onSubmit">
-        <v-text-field v-model="email" :readonly="loading" :rules="[required]" class="mb-2" clearable label="Email">
+        <v-text-field v-model="username" :readonly="loading" :rules="[required]" class="mb-2" clearable label="Username">
         </v-text-field>
 
-        <v-text-field v-model="password" :readonly="loading" :rules="[required]" clearable label="Kata Sandi"
+        <v-text-field v-model="password" type="password" :readonly="loading" :rules="[required]" clearable label="Kata Sandi"
           placeholder="Enter your password"></v-text-field>
         <div class="mb-4">
           <router-link class="text-black hover:text-blue-700 hover:underline" to='/forget-password'>
