@@ -2,6 +2,17 @@ import { defineStore } from 'pinia'
 import { apiClient } from '../utils/api-client'
 
 export const useAuthStore = defineStore('auth', () => {
+  const user = ref({})
+  const loggedIn = ref(false)
+  const formRegister = reactive({
+    first_name: '',
+    last_name: '',
+    username: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
+  })
+
   async function login(data) {
     try {
       const res = await apiClient.post('/api/v1/auth/login', {
@@ -17,5 +28,11 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  return { login }
+  watchEffect(() => {
+    const userValue = JSON.parse(localStorage.getItem('user-loggedIn'))
+    user.value = userValue
+    loggedIn.value = userValue ? true : false
+  })
+
+  return { login, loggedIn, user, formRegister }
 })
