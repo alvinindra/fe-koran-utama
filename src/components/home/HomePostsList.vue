@@ -1,18 +1,20 @@
 <script setup>
-const numbers = [1, 2, 3, 4, 5, 6, 7]
+import { usePostStore } from '@/stores/post'
+
+const store = usePostStore()
+
+store.getPostHomepage()
 </script>
 
 <template>
-  <div class="grid gap-y-4 mb-18">
+  <div v-if="store.listPosts" class="grid gap-y-4 mb-18">
     <v-card
-      v-for="number in numbers"
-      :key="number"
+      v-for="post in store.listPosts"
+      :key="post.title"
       class="mx-auto w-full !shadow-md"
     >
       <v-card-text class="pt-2 pb-0">
-        <div class="text-xs">
-          Kantin yang buka di Gedung B cuman 1. Uang bangunan rasanya ga guna
-        </div>
+        <div class="text-xs" v-html="post.body"></div>
       </v-card-text>
 
       <v-card-actions>
@@ -26,7 +28,7 @@ const numbers = [1, 2, 3, 4, 5, 6, 7]
             </v-avatar>
           </template>
 
-          <v-list-item-title class="!text-xs">Dani Fadli</v-list-item-title>
+          <v-list-item-title class="!text-xs">{{ post.user.first_name }} {{ post.user.last_name }}</v-list-item-title>
 
           <v-list-item-subtitle class="!text-xs">Mahasiswa</v-list-item-subtitle>
 
@@ -37,19 +39,19 @@ const numbers = [1, 2, 3, 4, 5, 6, 7]
                 :size="16"
                 icon="mdi-comment-text-outline"
               ></v-icon>
-              <span class="text-xs mr-2">10</span>
+              <span class="text-xs mr-2">{{ post.total_comment }}</span>
               <v-icon
                 class="mr-1"
                 :size="16"
                 icon="mdi-arrow-up-bold-outline"
               ></v-icon>
-              <span class="text-xs mr-2">256</span>
+              <span class="text-xs mr-2">{{ post.total_upvote }}</span>
               <v-icon
                 class="mr-1"
                 :size="16"
                 icon="mdi-arrow-down-bold-outline"
               ></v-icon>
-              <span class="text-xs mr-2">3</span>
+              <span class="text-xs mr-2">{{ post.total_downvote }}</span>
             </div>
           </template>
         </v-list-item>
