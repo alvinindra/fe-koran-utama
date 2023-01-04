@@ -1,6 +1,8 @@
 <script setup>
+import { useProfileStore } from '@/stores/profile'
 import { useAuthStore } from '@/stores/auth'
-const { user, postLogout } = useAuthStore()
+const { postLogout } = useAuthStore()
+const store = useProfileStore()
 </script>
 
 <template>
@@ -14,9 +16,9 @@ const { user, postLogout } = useAuthStore()
         height="60"
       />
       <div class="text-black mt-4 font-bold">
-        {{ user?.first_name }} {{ user?.last_name }}
+        {{ store.profileUser.first_name }} {{ store.profileUser.last_name }}
       </div>
-      <div class="text-gray-500">
+      <div class="text-gray-500 text-capitalize">
         Mahasiswa
       </div>
     </div>

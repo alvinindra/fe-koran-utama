@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { apiClient } from '../utils/api-client'
+import { apiClient } from '@/utils/api-client'
 import { useToast } from 'vue-toastification'
 const toast = useToast()
 
@@ -16,6 +16,10 @@ export const useProfileStore = defineStore('profile', () => {
       console.error(error)
     }
   }
+
+  onMounted(() => {
+    getProfile()
+  })
 
   return { getProfile, profileUser }
 })
