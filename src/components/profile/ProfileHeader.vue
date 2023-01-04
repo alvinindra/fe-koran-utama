@@ -1,3 +1,8 @@
+<script setup>
+import { useAuthStore } from '@/stores/auth'
+const { user, postLogout } = useAuthStore()
+</script>
+
 <template>
   <div class="mx-auto">
     <div class="text-center mt-4">
@@ -9,7 +14,7 @@
         height="60"
       />
       <div class="text-black mt-4 font-bold">
-        Dani Fadli
+        {{ user?.first_name }} {{ user?.last_name }}
       </div>
       <div class="text-gray-500">
         Mahasiswa
@@ -52,6 +57,14 @@
       block
     >
       Ubah Data Profil
+    </v-btn>
+    <v-btn
+      class="mt-4"
+      color="secondary"
+      block
+      @click="postLogout"
+    >
+      Logout
     </v-btn>
   </div>
 </template>

@@ -22,7 +22,12 @@ import * as directives from 'vuetify/directives'
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import '@mdi/font/css/materialdesignicons.css'
 
+import VueSweetalert2 from 'vue-sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css'
+import Toast, { POSITION } from 'vue-toastification'
+import 'vue-toastification/dist/index.css'
 import App from './App.vue'
+import { useAuthStore } from '@/stores/auth'
 
 const app = createApp(App)
 const pinia = createPinia()
@@ -35,6 +40,12 @@ const router = createRouter({
   scrollBehavior() {
     return { top: 0 }
   },
+})
+
+router.beforeEach((to, _, next) => {
+  const { loggedIn } = useAuthStore()
+  if (to.meta.requiresAuth && !loggedIn) next('/login')
+  else next()
 })
 
 const myCustomLightTheme = {
@@ -50,9 +61,8 @@ const myCustomLightTheme = {
     info: '#2196F3',
     success: '#4CAF50',
     warning: '#FB8C00',
-  }
+  },
 }
-
 
 const vuetify = createVuetify({
   components,
@@ -62,19 +72,20 @@ const vuetify = createVuetify({
     aliases,
     sets: {
       mdi,
-    }
+    },
   },
   theme: {
     defaultTheme: 'myCustomLightTheme',
     themes: {
-      myCustomLightTheme
-    }
-  }
+      myCustomLightTheme,
+    },
+  },
 })
 
 app.use(router)
 app.use(pinia)
 app.use(head)
 app.use(vuetify)
+app.use(VueSweetalert2)
+app.use(Toast, { timeout: 3000, position: POSITION.TOP_CENTER })
 app.mount('#app')
-

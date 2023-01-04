@@ -9,7 +9,7 @@ const form = ref(false)
 const username = ref('')
 const password = ref('')
 const loading = ref(false)
-const { login } = useAuthStore()
+const { postLogin } = useAuthStore()
 
 const onSubmit = () => {
   if (!form.value) return
@@ -20,7 +20,7 @@ const onSubmit = () => {
     password: password.value
   }
 
-  login(data)
+  postLogin(data)
   setTimeout(() => (loading.value = false), 2000)
 }
 

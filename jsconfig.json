@@ -4,6 +4,7 @@
     "paths": {
       "@/*": ["./*"],
     },
+    "allowJs": true
   },
   "vueCompilerOptions": {
     "experimentalDisableTemplateSupport": true,
