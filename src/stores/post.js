@@ -27,5 +27,17 @@ export const usePostStore = defineStore('post', () => {
     }
   }
 
-  return { getPostHomepage, listPosts }
+  async function createPost(data) {
+    try {
+      const res = await apiClient.post('/api/v1/student/posts', {
+        data,
+      })
+      toast.success('Postingan berhasil dibuat!')
+    } catch (error) {
+      toast.error(error.response.data.message)
+      console.error(error)
+    }
+  }
+
+  return { getPostHomepage, listPosts, createPost }
 })
