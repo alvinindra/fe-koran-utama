@@ -20,7 +20,7 @@ const required = (v) => {
 </script>
 
 <template>
-  <v-sheet class="px-4 my-32">
+  <v-sheet class="p-4 my-32">
     <div class="flex font-medium text-2xl uppercase text-primary">
       <router-link class="flex mx-auto" to="/">
         <img src="/images/logo-koran-utama.png" alt="">

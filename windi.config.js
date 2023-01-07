@@ -10,13 +10,17 @@ delete colors['blueGray']
 delete colors['zink']
 
 export default defineConfig({
-  plugins: [require('windicss/plugin/aspect-ratio'), require('windicss/plugin/line-clamp'), typography()],
+  plugins: [
+    require('windicss/plugin/aspect-ratio'),
+    require('windicss/plugin/line-clamp'),
+    typography(),
+  ],
   theme: {
     colors: {
       ...colors,
       primary: {
         default: '#1746a2',
-        50: '#d6e4ff'
+        50: '#d6e4ff',
       },
     },
     container: {
@@ -50,6 +54,6 @@ export default defineConfig({
     },
   },
   shortcuts: {
-    'container-mobile': 'max-w-768px mx-auto p-4 bg-white'
-  }
+    'container-mobile': 'max-w-768px mx-auto p-4',
+  },
 })

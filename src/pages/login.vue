@@ -5,11 +5,12 @@
 
 <script setup>
 import { useAuthStore } from '@/stores/auth'
+const router = useRouter()
 const form = ref(false)
 const username = ref('')
 const password = ref('')
 const loading = ref(false)
-const { postLogin } = useAuthStore()
+const { postLogin, loggedIn } = useAuthStore()
 
 const onSubmit = () => {
   if (!form.value) return
@@ -27,10 +28,16 @@ const onSubmit = () => {
 const required = (v) => {
   return !!v || 'Input tidak boleh kosong'
 }
+
+onMounted(() => {
+  if (loggedIn) {
+    router.push('/')
+  }
+})
 </script>
 
 <template>
-  <v-sheet class="px-4 my-32">
+  <v-sheet class="p-4 my-32">
     <div class="flex font-medium text-2xl uppercase text-primary">
       <img class="mx-auto" src="/images/logo-koran-utama.png" alt="">
     </div>

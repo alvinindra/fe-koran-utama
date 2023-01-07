@@ -3,7 +3,9 @@ import { usePostStore } from '@/stores/post'
 
 const store = usePostStore()
 
-store.getPostHomepage()
+onMounted(() => {
+  store.getPostHomepage()
+})
 </script>
 
 <template>

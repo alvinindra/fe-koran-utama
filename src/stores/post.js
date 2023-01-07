@@ -20,7 +20,7 @@ export const usePostStore = defineStore('post', () => {
         payload,
       })
 
-      listPosts.value = res.data.data.posts.data
+      listPosts.value = res.data.data.posts
     } catch (error) {
       toast.error(error.response.data.message)
       console.error(error)
