@@ -1,10 +1,18 @@
 <script setup>
-import { QuillEditor } from '@vueup/vue-quill'
-import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { usePostStore } from '@/stores/post'
 
 const { createPost } = usePostStore()
 const showCreatePost = ref(false)
+
+const formCreatePost = reactive({
+  title: '',
+  body: '',
+})
+
+const handleSavePost = () => {
+  showCreatePost.value = false
+  createPost(formCreatePost)
+}
 </script>
 
 <template>
@@ -16,19 +24,19 @@ const showCreatePost = ref(false)
       <v-container>
         <v-row>
           <v-col cols="12">
-            <v-text-field label="Judul Postingan" required></v-text-field>
+            <v-text-field v-model="formCreatePost.title" label="Judul Postingan" required></v-text-field>
           </v-col>
           <v-col class="mb-12" cols="12">
-            <QuillEditor theme="snow" />
+            <richTextEditor v-model="formCreatePost.body" theme="snow" placeHolder="Tulis Konten Postingan Disini..." />
           </v-col>
         </v-row>
       </v-container>
-      <v-card class="py-4 mt-5 ml-auto">
+      <v-card class="py-4 mt-5 ml-auto !shadow-none">
         <v-spacer></v-spacer>
         <v-btn color="blue-darken-1" variant="text" @click="showCreatePost = false">
           Close
         </v-btn>
-        <v-btn class="mr-4" color="blue-darken-1" variant="flat" @click="showCreatePost = false">
+        <v-btn class="mr-4" color="blue-darken-1" variant="flat" @click="handleSavePost">
           Save
         </v-btn>
       </v-card>
