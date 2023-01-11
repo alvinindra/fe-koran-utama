@@ -1,6 +1,7 @@
 <script setup>
 import { usePostStore } from '@/stores/post'
 
+const router = useRouter()
 const store = usePostStore()
 
 onMounted(() => {
@@ -14,9 +15,10 @@ onMounted(() => {
       v-for="post in store.listPosts"
       :key="post.title"
       class="mx-auto w-full !shadow-md"
+      @click="router.push(`/posts/${post.slug}`)"
     >
       <v-card-text class="pt-2 pb-0">
-        <div class="text-xs" v-html="post.body"></div>
+        <div class="text-xs line-clamp-3" v-html="post.body"></div>
       </v-card-text>
 
       <v-card-actions>
@@ -37,21 +39,23 @@ onMounted(() => {
           <template v-slot:append>
             <div class="justify-self-end">
               <v-icon
-                class="mr-1"
+                class="mr-1 cursor-pointer"
                 :size="16"
                 icon="mdi-comment-text-outline"
               ></v-icon>
               <span class="text-xs mr-2">{{ post.total_comment }}</span>
               <v-icon
-                class="mr-1"
+                class="mr-1 cursor-pointer"
                 :size="16"
                 icon="mdi-arrow-up-bold-outline"
+                @click.stop="store.postUpVote(post.slug)"
               ></v-icon>
               <span class="text-xs mr-2">{{ post.total_upvote }}</span>
               <v-icon
-                class="mr-1"
+                class="mr-1 cursor-pointer"
                 :size="16"
                 icon="mdi-arrow-down-bold-outline"
+                @click.stop="store.postDownVote(post.slug)"
               ></v-icon>
               <span class="text-xs mr-2">{{ post.total_downvote }}</span>
             </div>

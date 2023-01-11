@@ -5,6 +5,14 @@
     hide-on-scroll
     class="border-b"
   >
+    <v-btn
+      icon
+      class="hidden-xs-only"
+      v-if="$route.name === 'DetailPost'"
+      @click="$router.back()"
+    >
+      <v-icon>mdi-arrow-left</v-icon>
+    </v-btn>
     <v-toolbar-title>
       <img
         src="/images/logo-koran-utama.png"

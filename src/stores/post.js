@@ -5,6 +5,7 @@ const toast = useToast()
 
 export const usePostStore = defineStore('post', () => {
   const listPosts = ref([])
+  const detailPost = ref({})
   const perPage = ref(5)
 
   async function getPostHomepage() {
@@ -27,9 +28,19 @@ export const usePostStore = defineStore('post', () => {
     }
   }
 
+  async function getDetailPost(slug) {
+    try {
+      const res = await apiClient.get(`/api/v1/posts/${slug}`)
+      detailPost.value = res.data.data.post
+    } catch (error) {
+      toast.error(error.response.data.message)
+      console.error(error)
+    }
+  }
+
   async function createPost(payload) {
     try {
-      const res = await apiClient.post('/api/v1/student/posts', payload)
+      await apiClient.post('/api/v1/student/posts', payload)
       toast.success('Postingan berhasil dibuat!')
       getPostHomepage()
     } catch (error) {
@@ -38,5 +49,33 @@ export const usePostStore = defineStore('post', () => {
     }
   }
 
-  return { getPostHomepage, listPosts, createPost }
+  async function postUpVote(slug) {
+    try {
+      await apiClient.put(`/api/v1/student/posts/${slug}/upvote`)
+      getPostHomepage()
+    } catch (error) {
+      toast.error(error.response.data.message)
+      console.error(error)
+    }
+  }
+
+  async function postDownVote(slug) {
+    try {
+      await apiClient.put(`/api/v1/student/posts/${slug}/downvote`)
+      getPostHomepage()
+    } catch (error) {
+      toast.error(error.response.data.message)
+      console.error(error)
+    }
+  }
+
+  return {
+    getPostHomepage,
+    getDetailPost,
+    listPosts,
+    detailPost,
+    createPost,
+    postUpVote,
+    postDownVote,
+  }
 })
