@@ -36,24 +36,12 @@ const isActive = (link) => {
 
 <template>
   <v-bottom-navigation>
-    <template
-      v-for="nav in navigationBottom"
-      :key="nav.value"
-    >
+    <template v-for="nav in navigationBottom" :key="nav.value">
       <v-hover>
         <template v-slot:default="{ isHovering, props }">
-          <v-btn
-            v-bind="props"
-            :ripple="false"
-            :value="nav.value"
-            :key="nav.value"
-            @click="$router.push(nav.link)"
-            variant="flat"
-          >
-            <v-icon
-              :color="isHovering ? 'primary' : '#96989b'"
-              :class="isActive(nav.link)"
-            >{{ nav.icon }}</v-icon>
+          <v-btn v-bind="props" :ripple="false" :value="nav.value" :key="nav.value" @click="$router.push(nav.link)"
+            variant="flat">
+            <v-icon :color="isHovering ? 'primary' : '#96989b'" :class="isActive(nav.link)">{{ nav.icon }}</v-icon>
             {{ nav.text }}
           </v-btn>
         </template>

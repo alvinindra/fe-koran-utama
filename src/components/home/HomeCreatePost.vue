@@ -1,7 +1,10 @@
 <script setup>
 import { usePostStore } from '@/stores/post'
+import { useAuthStore } from '@/stores/auth'
 
 const { createPost } = usePostStore()
+const { loggedIn } = useAuthStore()
+const router = useRouter()
 const showCreatePost = ref(false)
 
 const formCreatePost = reactive({
@@ -12,6 +15,15 @@ const formCreatePost = reactive({
 const handleSavePost = () => {
   showCreatePost.value = false
   createPost(formCreatePost)
+}
+
+const handleShowCreatePost = () => {
+  if (loggedIn) {
+    showCreatePost.value = true
+  } else {
+    router.push('/login')
+  }
+
 }
 </script>
 
@@ -44,6 +56,6 @@ const handleSavePost = () => {
   </v-dialog>
   <v-fab-transition>
     <v-btn icon="mdi-text-box-plus-outline" color="primary" fab class="!fixed bottom-[80px] right-[24px]"
-      @click="showCreatePost = true"></v-btn>
+      @click="handleShowCreatePost"></v-btn>
   </v-fab-transition>
 </template>
