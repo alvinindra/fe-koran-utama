@@ -34,10 +34,10 @@ const handleSavePost = () => {
       <v-card class="py-4 mt-5 ml-auto !shadow-none">
         <v-spacer></v-spacer>
         <v-btn color="blue-darken-1" variant="text" @click="showCreatePost = false">
-          Close
+          Tutup
         </v-btn>
         <v-btn class="mr-4" color="blue-darken-1" variant="flat" @click="handleSavePost">
-          Save
+          Simpan
         </v-btn>
       </v-card>
     </v-card>
